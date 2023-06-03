@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLinkActive } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -9,7 +10,8 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent {
   title = 'formly-demo';
   menus: MenuItem[] = [
-    { label: 'Home', routerLink: '/' },
-    { label: 'Reactive Form', routerLink: '/reactive' }
+    { label: 'Home', routerLink: '/home', routerLinkActiveOptions:{exact:true} },
+    { label: 'Reactive Form', routerLink: '/reactive' },
+    { label: 'Formly Form', routerLink: '/formly' }
   ]
 }
