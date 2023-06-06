@@ -1,7 +1,7 @@
 <div class="flex gap-4 p-4 flex-col">
   <div class="text-2xl">Reactive Form</div>
-  <!--Dependency-->
-  <hr><div class="text-xl">Dependency</div>
+  <hr>
+  <div class="text-xl font-semibold text-red-500">Dependency</div>
   <div class="flex-1" [formGroup]="form">
     <div class="flex flex-col">
       <label>Type</label>
@@ -10,6 +10,51 @@
     <div class="flex flex-col">
       <label>Company Name</label>
       <input pInputText formControlName="companyName" />
+    </div>
+  </div>
+  <hr>
+  <div class="text-xl font-semibold text-red-500">Reuse</div>
+  <div class="flex-1" [formGroup]="formReuse">
+    <div class="flex flex-col">
+      <label>Name</label>
+      <input pInputText formControlName="name" />
+    </div>
+    <div class="flex flex-col">
+      <label>Type</label>
+      <p-dropdown [options]="types" formControlName="type" [showClear]="true" placeholder="Select"></p-dropdown>
+    </div>
+    <div class="flex flex-col">
+      <label>Company Name</label>
+      <input pInputText formControlName="companyName" />
+    </div>
+  </div>
+  <hr>
+  <div class="text-xl font-semibold text-red-500">Validator</div>
+  <div class="flex-1" [formGroup]="formIp">
+    <div class="flex flex-col">
+      <label>IP *</label>
+      <input pInputText formControlName="ip" />
+      <ng-container *ngIf="ip?.dirty || ip?.touched">
+        <span class="text-red-300" *ngIf="ip?.errors?.['required']">IP is required</span>
+        <span class="text-red-300" *ngIf="!ip?.errors?.['required'] && ip?.errors?.['ip']">"{{ip?.value}}" is not a
+          valid IP Address</span>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="text-xl font-semibold text-red-500">Layout</div>
+  <div class="flex-1 flex flex-col gap-3" [formGroup]="formLo">
+    <div class="flex items-center gap-3">
+      <div class="flex flex-col flex-1" *ngFor="let key of keys(col3Fields)">
+        <label>{{key}}</label>
+        <input pInputText [formControlName]="key" />
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="flex flex-col flex-1" *ngFor="let key of keys(col2Fields)">
+        <label>{{key}}</label>
+        <input pInputText [formControlName]="key" />
+      </div>
     </div>
   </div>
 </div>
